@@ -1,39 +1,23 @@
+
 #include "Tablero.h"
-#include "Casilla.h"
 
-/*Blancas + y negras -
-Alfil 1
-Caballo 2
-Peón 3
-Reina 4
-Rey 5
-Torre 6
-Vacía 0*/
-
-int Tablero::start[8][8] = { {6,2,1,5,4,1,2,6} , {3,3,3,3,3,3,3,3} , {0,0,0,0,0,0,0,0} , {0,0,0,0,0,0,0,0},
-						  {0,0,0,0,0,0,0,0} , {0,0,0,0,0,0,0,0} , {-3,-3,-3,-3,-3,-3,-3,-3} , {-6,-2,-1,-5,-4,-1,-2,-6} };
-
-Tablero::Tablero()
-{
-	for (int i = 0; i < 8; i++) {
-		for (int j = 0; j < 8; j++) {
-			tablero[i][j] = start[i][j];
-		}
-	}
+Tablero::Tablero() {
+    // Inicializar las casillas del tablero
+    for (int fila = 0; fila < TAM_TABLERO; fila++) {
+        for (int columna = 0; columna < TAM_TABLERO; columna++) {
+            casillas[fila][columna] = NULL;
+        }
+    }
 }
 
-int Tablero::checkCasilla(Casilla *pcasilla)
-{
-	Casilla casilla;
-	Casilla* pcasilla = &casilla;
-	return tablero[pcasilla->x][pcasilla->y];
-}
-
-void Tablero::restart()
-{
-	for (int i = 0; i < 8; i++) {
-		for (int j = 0; j < 8; j++) {
-			tablero[i][j] = start[i][j];
-		}
-	}
+Tablero::~Tablero() {
+    // Eliminar todas las piezas del tablero
+    for (int fila = 0; fila < TAM_TABLERO; fila++) {
+        for (int columna = 0; columna < TAM_TABLERO; columna++) {
+            if (casillas[fila][columna] != nullptr) {
+                delete casillas[fila][columna];
+                casillas[fila][columna] = nullptr;
+            }
+        }
+    }
 }

@@ -11,7 +11,7 @@ void display() {
     glClear(GL_COLOR_BUFFER_BIT);
     // Borde del tablero
     glColor3f(0.4f, 0.2f, 0.0f);
-    glRecti(-75, -75, TAM_CASILLA * 8 + 75, TAM_CASILLA * 8 + 75);
+    glRecti(-75, -75, TAM_CASILLA * 10, TAM_CASILLA * 10);
 
     // Tablero
     for (int fila = 1; fila < TAM_TABLERO; fila++) {
@@ -42,7 +42,7 @@ int main(int argc,char* argv[]) {
 
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    glOrtho(0, TAM_CASILLA * TAM_TABLERO + 75, TAM_CASILLA * TAM_TABLERO + 75, 0, -1, 1);
+    glOrtho(0, TAM_CASILLA * TAM_TABLERO + 150, TAM_CASILLA * TAM_TABLERO + 150, 0, -1, 1);
 
     glutDisplayFunc(display);
 

@@ -1,13 +1,16 @@
 #pragma once
-class Tablero
-{
-private:
-	int tablero[8][8];
-public:
-	static int start[8][8];
-	Tablero();
-	virtual ~Tablero();
-	void restart();
-	int checkCasilla(Casilla *pcasilla);
-};
 
+#include "Pieza.h"
+#include "Coordenada.h"
+
+const int TAM_TABLERO = 8;
+
+class Tablero {
+public:
+    Tablero();
+    ~Tablero();
+
+
+private:
+    Pieza* casillas[TAM_TABLERO][TAM_TABLERO];
+};

@@ -5,6 +5,9 @@
 #include <sting>
 using namespace std;
 
+void Menu();
+void OnDraw(void);
+
 const int TAM_CASILLA = 75;
 
 Tablero tablero;
@@ -65,8 +68,19 @@ int main(int argc,char* argv[]) {
     glOrtho(0, TAM_CASILLA * TAM_TABLERO + 150, TAM_CASILLA * TAM_TABLERO + 150, 0, -1, 1);
 
     glutDisplayFunc(display);
+    Menu();
 
     glutMainLoop();
 
     return 0;
+}
+
+void OnDraw(void)
+{
+	Menu();
+}
+
+void Menu()
+{
+	
 }

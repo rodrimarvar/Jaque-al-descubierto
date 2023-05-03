@@ -2,7 +2,7 @@
 #include "Coordenada.h"
 #include "Tablero.h"
 #include <iostream>
-
+#include <sting>
 using namespace std;
 
 const int TAM_CASILLA = 75;

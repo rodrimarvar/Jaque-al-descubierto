@@ -1,9 +1,9 @@
 #pragma once
 class Casilla
 {
-private:
-	int x, y;
 public:
+	float x, y;
+	
 	Casilla();
 	virtual ~Casilla();
 
@@ -20,7 +20,7 @@ public:
 	Casilla operator/(float div);
 	Casilla operator/(Casilla casilla);
 	Casilla valorAbsoluto();
-	bool operator!=(Casilla casilla); //servir· para comprobar si la casilla est· ocupada
+	bool operator!=(Casilla casilla); //servir√° para comprobar si la casilla est√° ocupada
 	friend class Tablero;
 };
 

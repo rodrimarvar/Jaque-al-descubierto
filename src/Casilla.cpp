@@ -1,23 +1,19 @@
 #include "Casilla.h"
 #include <math.h>
 
-Casilla::Casilla()
+Casilla::Casilla(float _x, float _y)
 {
+	x = _x;
+	y = _y;
 }
 
 Casilla::~Casilla()
 {
 }
 
-void Casilla::setPos(float _x, float _y)
-{
-	x = _x;
-	y = _y;
-}
-
 Casilla Casilla::operator+(Casilla sum)
 {
-	Casilla resultado;
+	Casilla resultado(x, y);
 	resultado.x = x + sum.x;
 	resultado.y = y + sum.y;
 	return resultado;
@@ -25,15 +21,23 @@ Casilla Casilla::operator+(Casilla sum)
 
 Casilla Casilla::operator+(float sum)
 {
-	Casilla resultado;
+	Casilla resultado(x, y);
 	resultado.x = x + sum;
 	resultado.y = y;
 	return resultado;
 }
 
+Casilla Casilla::operator - (Casilla resta)
+{
+	Casilla resultado(x, y);
+	resultado.x = x - resta.x;
+	resultado.y = y - resta.y;
+	return resultado;
+}
+
 float Casilla::modulo()
 {
-	return (float)sqrt((float)(x * x )+(float)(y * y));
+	return (float)sqrt(x * x + y * y);
 }
 
 float Casilla::argumento()
@@ -43,7 +47,7 @@ float Casilla::argumento()
 
 Casilla Casilla::unitario()
 {
-	Casilla retorno;
+	Casilla retorno(x, y);
 	float mod = modulo();
 	if (mod > 0.00001)
 	{
@@ -51,28 +55,6 @@ Casilla Casilla::unitario()
 		retorno.y /= mod;
 	}
 	return retorno;
-}
-
-Casilla Casilla::operator - (Casilla resta)
-{
-	Casilla resultado;
-	resultado.x = x - resta.x;
-	resultado.y = y - resta.y;
-	return resultado;
-}
-
-Casilla Casilla::operator / (Casilla casilla)
-{
-	Casilla resultado;
-	if (casilla.x != 0)
-		resultado.x = x / casilla.x;
-	else resultado.x = 0;
-
-	if (casilla.y != 0)
-		resultado.y = y / casilla.y;
-	else resultado.y = 0;
-
-	return resultado;
 }
 
 float Casilla::operator*(Casilla casilla)
@@ -84,17 +66,37 @@ float Casilla::operator*(Casilla casilla)
 
 Casilla Casilla::operator*(float prod)
 {
-	Casilla resultado;
+	Casilla resultado(x, y);
 	resultado.x = x * prod;
 	resultado.y = y * prod;
 	return resultado;
 }
 
+Casilla Casilla::operator / (float div)
+{
+	Casilla resultado(x / div, y / div);
+	return resultado;
+}
+
+Casilla Casilla::operator / (Casilla casilla)
+{
+	Casilla resultado(x, y);
+	if (casilla.x != 0)
+		resultado.x = x / casilla.x;
+	else resultado.x = 0;
+
+	if (casilla.y != 0)
+		resultado.y = y / casilla.y;
+	else resultado.y = 0;
+
+	return resultado;
+}
+
 Casilla Casilla::valorAbsoluto()
 {
-	Casilla resultado;
-	resultado.x = abs(resultado.x);
-	resultado.y = abs(resultado.y);
+	Casilla resultado(x,y);
+	resultado.x = fabs(resultado.x);
+	resultado.y = fabs(resultado.y);
 	return resultado;
 }
 

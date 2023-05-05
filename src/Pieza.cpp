@@ -1,17 +1,15 @@
 #include "Pieza.h"
-#include "Tablero.h"
-#include "Normas.h"
-#include <math.h>
 
-Pieza::Pieza(void)
-{
-	struct jugada Jugada;
+Pieza::Pieza(Color color, Coordenada posicion) : color(color), posicion(posicion) {}
+
+Color Pieza::obtenerColor() const {
+    return color;
 }
 
-bool Pieza::mueve(struct jugada& jugada)
-{
-	int destino = pTablero->Interaccion(jugada.destino) = 0;
-	if (destino == 0)
-		return 1;
-	return 0;
+Coordenada Pieza::obtenerPosicionActual() const {
+    return posicion;
+}
+
+void Pieza::actualizarPosicion(Coordenada posicion) {
+    this->posicion = posicion;
 }

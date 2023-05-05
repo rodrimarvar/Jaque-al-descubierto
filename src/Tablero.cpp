@@ -5,7 +5,7 @@ Tablero::Tablero() {
     // Inicializar las casillas del tablero
     for (int fila = 0; fila < TAM_TABLERO; fila++) {
         for (int columna = 0; columna < TAM_TABLERO; columna++) {
-            casillas[fila][columna] = NULL;
+            casillas[fila][columna] = nullptr;
         }
     }
 }
@@ -19,5 +19,43 @@ Tablero::~Tablero() {
                 casillas[fila][columna] = nullptr;
             }
         }
+    }
+}
+
+Pieza* Tablero::obtenerPosicionPieza(Coordenada posicion) {
+    if (esCoordenadaValida(posicion)) {
+        return casillas[posicion.fila][posicion.columna];
+    }
+    else {
+        return nullptr;
+    }
+}
+
+
+void Tablero::colocarPieza(Coordenada posicion, Pieza* pieza) {
+    casillas[posicion.fila][posicion.columna] = pieza;
+}
+
+bool Tablero::esCoordenadaValida(Coordenada coordenada) const {
+    int x = coordenada.fila;
+    int y = coordenada.columna;
+    return x >= 0 && x < TAM_TABLERO && y >= 0 && y < TAM_TABLERO;
+}
+
+bool Tablero::moverPieza(Coordenada origen, Coordenada destino) {
+    
+    Pieza* piezaOrigen = obtenerPosicionPieza(origen);
+
+    if (piezaOrigen == nullptr) {
+        return false;
+    }
+    if (piezaOrigen->esMovimientoValido(origen, destino, *this)) {
+        colocarPieza(destino, piezaOrigen);
+        colocarPieza(origen, nullptr);
+        piezaOrigen->actualizarPosicion(destino);
+        return true;
+    }
+    else {
+        return false;
     }
 }

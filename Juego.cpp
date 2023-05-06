@@ -137,11 +137,11 @@ void menu(int opcion)
     {
         case 1:
             // Pedimos los nombres de los jugadores
-            string nombreJugador1, nombreJugador2;
+            /*string nombreJugador1, nombreJugador2;
             cout << "Ingrese el nombre del jugador 1: ";
             cin >> nombreJugador1;
             cout << "Ingrese el nombre del jugador 2: ";
-            cin >> nombreJugador2;
+            cin >> nombreJugador2;*/
             
             // Iniciamos el juego
             // Aquí iría el código para el juego 

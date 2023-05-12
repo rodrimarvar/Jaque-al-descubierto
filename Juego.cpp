@@ -7,6 +7,9 @@ using namespace std;
 
 void Menu();
 void OnDraw(void);
+void OnTimer(int value);
+void onSpecialKeyboardDown(int key, int x, int y);
+void OnKeyboardDown(unsigned char key, int x_t, int y_t);
 
 const int TAM_CASILLA = 75;
 
@@ -52,8 +55,10 @@ void display() {
                 (columna + 1) * TAM_CASILLA, (fila + 1) * TAM_CASILLA);
         }
     }
-
-    glFlush();
+    
+    tablero.dibuja_selector();
+    
+    glutSwapBuffers();
 }
 
 int main(int argc,char* argv[]) {
@@ -67,6 +72,10 @@ int main(int argc,char* argv[]) {
     glLoadIdentity();
     glOrtho(0, TAM_CASILLA * TAM_TABLERO + 150, TAM_CASILLA * TAM_TABLERO + 150, 0, -1, 1);
 
+    
+    glutKeyboardFunc(OnKeyboardDown);
+    glutSpecialFunc(onSpecialKeyboardDown);
+
     glutDisplayFunc(display);
     Menu();
 
@@ -75,9 +84,28 @@ int main(int argc,char* argv[]) {
     return 0;
 }
 
+void OnKeyboardDown(unsigned char key, int x_t, int y_t) {
+    glutPostRedisplay();
+    tablero.tecla_selector(key);
+}
+
+void onSpecialKeyboardDown(int key, int x, int y)
+{
+    tablero.tecla_selector(key);
+    glutPostRedisplay();
+}
+
+void OnTimer(int value) { 
+    //poner aqui el código de animacion 
+    
+    glutPostRedisplay();
+} 
+
 void OnDraw(void)
 {
 	Menu();
+    
+    glutSwapBuffers();
 }
 
 void Menu()

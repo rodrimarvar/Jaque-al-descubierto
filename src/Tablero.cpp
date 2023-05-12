@@ -1,5 +1,7 @@
-
+#include "freeglut.h"
 #include "Tablero.h"
+
+
 
 Tablero::Tablero() {
     // Inicializar las casillas del tablero
@@ -21,7 +23,7 @@ Tablero::~Tablero() {
         }
     }
 }
-
+/*
 Pieza* Tablero::obtenerPosicionPieza(Coordenada posicion) {
     if (esCoordenadaValida(posicion)) {
         return casillas[posicion.fila][posicion.columna];
@@ -30,11 +32,11 @@ Pieza* Tablero::obtenerPosicionPieza(Coordenada posicion) {
         return nullptr;
     }
 }
-
-
+*/
+/*
 void Tablero::colocarPieza(Coordenada posicion, Pieza* pieza) {
     casillas[posicion.fila][posicion.columna] = pieza;
-}
+}*/
 
 bool Tablero::esCoordenadaValida(Coordenada coordenada) const {
     int x = coordenada.fila;
@@ -42,6 +44,7 @@ bool Tablero::esCoordenadaValida(Coordenada coordenada) const {
     return x >= 0 && x < TAM_TABLERO && y >= 0 && y < TAM_TABLERO;
 }
 
+/*
 bool Tablero::moverPieza(Coordenada origen, Coordenada destino) {
     
     Pieza* piezaOrigen = obtenerPosicionPieza(origen);
@@ -58,4 +61,17 @@ bool Tablero::moverPieza(Coordenada origen, Coordenada destino) {
     else {
         return false;
     }
+}
+*/
+
+void Tablero::dibuja_selector() {
+   
+    glColor3f(0.0f, 0.0f, 1.0f);
+    glRecti(selector.getColumna() * 75, selector.getFila() * 75,
+        (selector.getColumna() + 1) * 75, (selector.getFila() + 1) * 75);
+    glFlush();
+}
+
+void Tablero::tecla_selector(unsigned char key) {
+    selector.mover(key);
 }
